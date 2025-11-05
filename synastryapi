@@ -1,0 +1,22 @@
+main.py
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Person(BaseModel):
+    date: str
+    time: str
+    lat: float
+    lon: float
+
+@app.get("/")
+def home():
+    return {"message": "Synastry API is live!"}
+
+@app.post("/synastry")
+def synastry_chart(person1: Person, person2: Person):
+    return {
+        "compatibility_score": 7.5,
+        "note": "This is a test response. Add real logic next!"
+    }
